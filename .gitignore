@@ -1,0 +1,12 @@
+/SmartWMS.DTO/obj
+/SmartWMS.DTO/bin
+/SmartWMS/obj
+/SmartWMS/bin
+/.vs
+/SmartWMS/*.user
+/tmp
+/pub
+/SmartWMS/SmartWMS/SmartWMS.csproj.user
+/SmartWMS/SmartWMS/bin
+/SmartWMS/SmartWMS/obj
+/packages

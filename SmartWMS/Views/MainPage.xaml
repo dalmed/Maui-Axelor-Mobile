@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+             xmlns:util="clr-namespace:SmartWMS.Utils"
+             x:Class="SmartWMS.Views.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Green1">#00C300</Color>
+            <Color x:Key="Orange">#FF6800</Color>
+            <Color x:Key="skyblue">#87CEEB</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <HorizontalStackLayout>
+            <VerticalStackLayout MinimumWidthRequest="60"
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+                <VerticalStackLayout>
+                    <Frame HasShadow="true" CornerRadius="10" Padding="4,0,0,4">
+                        <StackLayout>
+                            <Entry Placeholder="Code" Text="{Binding Code}" />
+                            <Editor Text="{Binding CookieName}" />
+                            <Entry Placeholder="Cookies" Text="{Binding Cookies}" />
+                            <Editor  Text="{Binding Result}" AutoSize="TextChanges" ></Editor>
+                            <Editor Placeholder="CookiesList" Text="{Binding CookiesList}" AutoSize="TextChanges" />
+
+
+                        </StackLayout>
+                    </Frame>
+
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout>
+                    <Button Text="Login" Command="{Binding LoginCommand}" 
+                    HorizontalOptions="Center"
+                    BackgroundColor="{StaticResource Orange}"
+                    CornerRadius="5"></Button>
+
+                    <Button Text="Get Partners" Command="{Binding GetPartnersCommand}" 
+                    HorizontalOptions="Center"
+                    BackgroundColor="{StaticResource Green1}"
+                    CornerRadius="5"></Button>
+
+
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+
+                <dg:DataGrid ItemsSource="{Binding PartnersList}" SelectionEnabled="True" SelectedItem="{Binding SelectedPartner}"
+                             RowHeight="70" HeaderHeight="50" BorderColor="{StaticResource GridBorderColor}"
+                             HeaderBackground="{StaticResource GridHeaderBgColor}"
+                             PullToRefreshCommand="{Binding GetIncubatorsCommand}" IsRefreshing="{Binding IsRefreshing}"
+                             ActiveRowColor="{StaticResource ActiveRowColor}">
+                    <dg:DataGrid.Columns>
+
+                        <dg:DataGridColumn Title="Reference" PropertyName="Reference" />
+                        <dg:DataGridColumn Title="SimpleFullName" PropertyName="SimpleFullName" />
+                        <dg:DataGridColumn Title="Phone" PropertyName="FixedPhone" />
+                        <dg:DataGridColumn Title="Address" PropertyName="MainAddress.FullName" />
+                    </dg:DataGrid.Columns>
+                    <dg:DataGrid.RowsBackgroundColorPalette>
+                        <dg:PaletteCollection>
+                            <Color>#F2F2F2</Color>
+                            <Color>#FFFFFF</Color>
+                        </dg:PaletteCollection>
+                    </dg:DataGrid.RowsBackgroundColorPalette>
+                    <dg:DataGrid.Resources>
+                        <ResourceDictionary>
+                            <util:StreakToColorConverter x:Key="StreakToColorConverter" />
+                        </ResourceDictionary>
+                    </dg:DataGrid.Resources>
+                </dg:DataGrid>
+
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </ScrollView>
+
+</ContentPage>
